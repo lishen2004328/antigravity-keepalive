@@ -1,0 +1,29 @@
+name: Antigravity Keep Alive Scheduler
+
+on:
+  schedule:
+    # 对应北京时间 08:00, 13:00, 18:00, 23:00 (UTC 00:00, 05:00, 10:00, 15:00)
+    - cron: '0 0,5,10,15 * * *'
+  workflow_dispatch: # 支持在 GitHub 页面上手动点击测试运行
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests
+
+      - name: Execute Keep-Alive Ping
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python run_ping.py

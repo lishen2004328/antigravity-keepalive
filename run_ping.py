@@ -9,12 +9,13 @@ if not API_KEY:
     print("::error::Missing required GEMINI_API_KEY in environment/secrets.")
     sys.exit(1)
 
-# 按优先级轮询最轻量模型，防止单个模型遇到临时 503 拥堵
+# 使用当前可用且性价比最高的轻量级模型列表
 CANDIDATE_MODELS = [
-    "gemini-2.5-flash",
-    "gemini-2.0-flash",
-    "gemini-1.5-flash",
-    "gemini-2.5-pro"
+    "gemini-flash-latest",
+    "gemini-flash-lite-latest",
+    "gemini-3.5-flash-lite",
+    "gemini-3.7-flash",
+    "gemini-2.5-flash-lite"
 ]
 
 def ping_model(model_name):

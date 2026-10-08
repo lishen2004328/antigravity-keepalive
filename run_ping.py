@@ -9,8 +9,8 @@ if not API_KEY:
     sys.exit(1)
 
 def send_ping_message():
-    """使用最轻量的 Gemini 2.0 Flash / 1.5 Flash 模型发送短消息触发额度活跃"""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
+    """使用最轻量的 Gemini 3.8 Flash 模型发送短消息触发额度活跃"""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key={API_KEY}"
     headers = {
         "Content-Type": "application/json"
     }
